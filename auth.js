@@ -1,11 +1,21 @@
+const jwt = require("jsonwebtoken");
 const User = require("./db/userModel")
 const bcrypt = require("bcrypt")
 
-// const jwt = require(‘jsonwebtoken’)
+function generateToken(user) {
+  return jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: "1800s", });
+}
 
-// function generateToken(user) {
-//   return token = jwt.sign(user, process.env.JWT_SECRET, {
-//      expiresIn: 60 * 60 * 24 // expires in 24 hours
+// function validateToken(req, res, next) {
+//   const authHeader = req.headers["authorization"];
+//   const token = authHeader && authHeader.split(" ")[1];
+//
+//   if (token == null) return res.sendStatus(401);
+//
+//   jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+//     if (err) return res.sendStatus(403);
+//     req.tokenData = decoded;
+//     next();
 //   });
 // }
 
@@ -16,7 +26,7 @@ exports.register = async (req, res, next) => {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
   const hash = await bcrypt.hash(password, 10)
-  const token = '123'
+  const token = generateToken(email);
   try {
     const user = await User.create({
       email,
@@ -26,7 +36,7 @@ exports.register = async (req, res, next) => {
       user: {
         email
       },
-      token
+      token: `Bearer ${token}`
     })
   } catch (err) {
     console.log('err', err)
