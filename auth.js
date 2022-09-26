@@ -25,7 +25,10 @@ exports.register = async (req, res, next) => {
   if (password.length < 8) {
     return res.status(400).json({ message: "Password less than 8 characters" })
   }
-  const hash = await bcrypt.hash(password, 10)
+  // generate salt to hash password
+  const salt = await bcrypt.genSalt(10);
+  // now we set user password to hashed password
+  user.password = await bcrypt.hash(user.password, salt);
   const token = generateToken(email);
   try {
     const user = await User.create({
@@ -50,22 +53,24 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
   const { email, password } = req.body
   try {
-    const user = await User.findOne({ email, password })
-    if (!user) {
-      res.status(401).json({
-        message: "Login not successful",
-        error: "User not found",
-      })
+    const user = await User.findOne({ email })
+    if (user) {
+      const validPassword = await bcrypt.compare(password, user.password);
+      if (validPassword) {
+        const token = generateToken(email);
+        res.status(200).json({
+          user: {
+            email
+          },
+          token: `Bearer ${token}`
+        })
+      } else {
+        res.status(400).json({ error: "Invalid Password" });
+      }
     } else {
-      res.status(200).json({
-        message: "Login successful",
-        user,
-      })
+      res.sendStatus(401);
     }
-  } catch (error) {
-    res.status(400).json({
-      message: "An error occurred",
-      error: error.message,
-    })
+  } catch (err) {
+    console.log('err', err)
   }
 }
