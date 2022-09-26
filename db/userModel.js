@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     minlength: 8,
     required: [true, "Please provide a password!"],
     unique: false,
-  }
+  },
 });
 
 // export UserSchema
