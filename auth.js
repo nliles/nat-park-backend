@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const User = require("./db/model/userModel");
 const bcrypt = require("bcrypt");
+const User = require("./db/model/userModel");
 
 function generateToken(user) {
   return jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: "60m" });
