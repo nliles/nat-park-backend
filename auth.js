@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("./db/userModel")
+const User = require("./db/model/userModel")
 const bcrypt = require("bcrypt")
 
 function generateToken(user) {

@@ -4,9 +4,10 @@ const connectDB = require("./db/dbConnect");
 const app = express();
 const cors = require('cors')
 const router = express.Router();
-const User = require("./db/userModel")
+const User = require("./db/model/userModel")
 const bcrypt = require("bcrypt")
-const authRoutes = require('./authRoutes')
+const authRoutes = require('./routes/authRoutes')
+const parkRoutes = require('./routes/parkRoutes')
 var bodyParser = require('body-parser')
 
 //Connecting the Database
@@ -37,10 +38,8 @@ app.use(cors({ credentials: true }))
 
 app.use('/auth', authRoutes)
 
-app.use(express.json())
+app.use('/', parkRoutes)
 
-app.get("/", function(req, res) {
-  res.send('hi');
-});
+app.use(express.json())
 
 module.exports = app;
