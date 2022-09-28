@@ -24,12 +24,13 @@ exports.updateParks = async (req, res, next) => {
         new: true,
       });
     } else {
-      await Park.create({
+      parkData = await Park.create({
         user,
         parkIds: parks
       });
+      parkData = parkData.json()
     }
-    return res.status(200).json({ message: "Success" });
+    return res.status(200).json({ parks: parkData.parkIds || [] });
   } catch (e) {
     return res.status(400).json({ message: "Fail" });
   }
