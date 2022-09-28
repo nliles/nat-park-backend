@@ -6,7 +6,9 @@ const jwt = require("jsonwebtoken");
 exports.getParks = async (req, res, next) => {
   try {
     const email = req.userData.email;
+    console.log('email', email)
     const park = await Park.findOne({ email });
+    console.log('park', park)
     return res.status(200).json({ parks: park.parkIds });
   } catch (e) {
     return res.status(500).json({ message: "Something went wrong" });
