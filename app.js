@@ -12,18 +12,19 @@ var bodyParser = require("body-parser");
 
 //Connecting the Database
 connectDB();
+const normalizePort = val => {
+  const port = parseInt(val, 10);
 
-let port = process.env.PORT;
-if (port == null || port == "") {
-  port = 5000;
-}
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname,  "build", "index.html"));
-  });
-}
+  if (isNaN(port)) {
+    return val;
+  }
+  if (port >= 0) {
+    return port;
+  }
+  return false;
+};
+const port = normalizePort(process.env.PORT || '5000');
+app.set('port', port);
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
