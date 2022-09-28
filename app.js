@@ -48,7 +48,7 @@ app.use(cors({ credentials: true }));
 
 app.use("/auth", authRoutes);
 
-// app.use("/", parkRoutes);
+app.use("/", parkRoutes);
 
 app.use(express.json());
 
