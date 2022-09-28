@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const authRoutes = require("./routes/authRoutes");
 const parkRoutes = require("./routes/parkRoutes");
 var bodyParser = require("body-parser");
+var videos = require('./routes/index');
 
 //Connecting the Database
 connectDB();
@@ -47,7 +48,7 @@ app.use(cors({ credentials: true }));
 
 app.use("/auth", authRoutes);
 
-app.use("/", parkRoutes);
+// app.use("/", parkRoutes);
 
 app.use(express.json());
 
