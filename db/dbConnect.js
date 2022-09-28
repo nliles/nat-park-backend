@@ -1,14 +1,18 @@
 const mongoose = require("mongoose");
+require('dotenv').config()
 
-const localDB =
-  "mongodb+srv://nliles:uxcnTuEl5WjdwVuD@cluster0.nhfe9l0.mongodb.net/?retryWrites=true&w=majority";
+  async function dbConnect() {
+    mongoose
+      .connect(
+          process.env.DB_URL
+      )
+      .then(() => {
+        console.log("Successfully connected to MongoDB Atlas!");
+      })
+      .catch((error) => {
+        console.log("Unable to connect to MongoDB Atlas!");
+        console.error(error);
+      });
+  }
 
-const connectDB = async () => {
-  await mongoose.connect(localDB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  console.log("MongoDB Connected");
-};
-
-module.exports = connectDB;
+  module.exports = dbConnect;

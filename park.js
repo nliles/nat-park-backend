@@ -5,11 +5,9 @@ const jwt = require("jsonwebtoken");
 // park.js
 exports.getParks = async (req, res, next) => {
   try {
-    const email = req.userData.email;
-    console.log('email', email)
-    const park = await Park.findOne({ email });
-    console.log('park', park)
-    return res.status(200).json({ parks: park.parkIds });
+    const user = await User.findOne({ email: req.userData.user });
+    const park = await Park.findOne({ user });
+    return res.status(200).json({ parks: park ? park.parkIds : [] });
   } catch (e) {
     return res.status(500).json({ message: "Something went wrong" });
   }
@@ -17,13 +15,21 @@ exports.getParks = async (req, res, next) => {
 
 exports.updateParks = async (req, res, next) => {
   const { parks } = req.body;
+  const user = await User.findOne({ email: req.userData.user });
+  const park = await Park.findOne({ user });
+  let parkData;
   try {
-    const query = { email: req.userData.email };
-    const update = { parkIds: parks };
-    const parkData = await Park.findOneAndUpdate(query, update, {
-      new: true,
-    });
-    return res.status(200).json({ parks: parkData.parkIds });
+    if (park) {
+      parkData = await Park.findOneAndUpdate({ user }, { parkIds: parks }, {
+        new: true,
+      });
+    } else {
+      await Park.create({
+        user,
+        parkIds: parks
+      });
+    }
+    return res.status(200).json({ message: "Success" });
   } catch (e) {
     return res.status(400).json({ message: "Fail" });
   }
