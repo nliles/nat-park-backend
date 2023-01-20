@@ -28,7 +28,7 @@ app.use(cors({ credentials: true }));
 const hour = 3600000;
 
 app.use(session({
-  secret: 'keyboard cat', // name of cookie stored on client side
+  secret: process.env.SESSION_SECRET_KEY, // name of cookie stored on client side
   resave: false,
   saveUninitialized: true,
   store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
@@ -39,9 +39,8 @@ app.use("/auth", authRoutes);
 
 app.use("/", parkRoutes);
 
-app.get("/", (request, response, next) => {
-  response.json({ message: "Hey! This is your server response!" });
-  next();
+app.get('/', (req, res) => {
+  res.send('<h1>Nat Park Checklist Server</h1>');
 });
 
 app.use(express.json());
