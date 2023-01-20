@@ -1,5 +1,7 @@
 require("dotenv").config();
-const express = require("express");
+const express = require('express');
+const MongoStore = require('connect-mongo');
+const session = require('express-session');
 const connectDB = require("./db/dbConnect");
 const app = express();
 const cors = require("cors");
@@ -19,6 +21,18 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(cors({ credentials: true }));
+
+// app.use(cookieParser());
+
+const hour = 3600000;
+
+app.use(session({
+  secret: 'keyboard cat', // name of cookie stored on client side
+  resave: false,
+  saveUninitialized: true,
+  store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+  cookie: { maxAge: hour }
+}))
 
 app.use("/auth", authRoutes);
 

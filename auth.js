@@ -1,10 +1,5 @@
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
-
-function generateToken(user) {
-  return jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: "60m" });
-}
 
 // auth.js
 exports.register = async (req, res, next) => {
@@ -21,18 +16,12 @@ exports.register = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   // now we set user password to hashed password
   const hash = await bcrypt.hash(password, salt);
-  const token = generateToken(email);
   try {
     const user = await User.create({
       email,
       password: hash,
     });
-    res.status(200).json({
-      user: {
-        email,
-        token: `Bearer ${token}`,
-      },
-    });
+    res.sendStatus(200);
   } catch (err) {
     res.status(401).json({
       message: "User not successful created",
@@ -48,11 +37,11 @@ exports.login = async (req, res, next) => {
     if (user) {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
-        const token = generateToken(email);
+        req.session.user = email;
+        req.session.admin = true;
         res.status(200).json({
           user: {
             email,
-            token: `Bearer ${token}`,
           },
         });
       } else {
@@ -64,4 +53,9 @@ exports.login = async (req, res, next) => {
   } catch (err) {
     console.log("err", err);
   }
+};
+
+exports.logout = async (req, res, next) => {
+  req.session.destroy();
+  res.send("logout success!");
 };
