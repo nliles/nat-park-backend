@@ -2,7 +2,8 @@ const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
 
 const passwordErrorMsg = "Password must have at least 8 characters.";
-const userExistsErrorMsg = "The email address provided may be registered already.";
+const userExistsErrorMsg =
+  "The email address provided may be registered already.";
 const invalidErrorMsg = "You have entered an invalid username or password.";
 const generalErrorMsg = "Something went wrong. Please try again later.";
 

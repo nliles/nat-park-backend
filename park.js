@@ -16,11 +16,13 @@ exports.updateParks = async (req, res, next) => {
   const { designation, parks } = req.body;
   const user = await User.findOne({ email: req.session.user });
   const park = await Park.findOne({ user });
-  const  query = { user }
-  const update = { parks: {
-    ...park ? park.parks : {},
-    [designation]: parks
-  }}
+  const query = { user };
+  const update = {
+    parks: {
+      ...(park ? park.parks : {}),
+      [designation]: parks,
+    },
+  };
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
   let parkData;
   try {
