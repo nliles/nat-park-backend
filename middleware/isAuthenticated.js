@@ -5,6 +5,8 @@ module.exports = (req, res, next) => {
   if (req.session.user) {
     next()
   } else {
-    next('route')
+    return res.status(401).json({
+      message: "Authentication failed.",
+    });
   }
 };
