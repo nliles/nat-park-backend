@@ -5,6 +5,7 @@ const session = require('express-session');
 const connectDB = require("./db/dbConnect");
 const app = express();
 const cors = require("cors");
+const cookieParser = require('cookie-parser')
 const router = express.Router();
 const User = require("./db/model/userModel");
 const bcrypt = require("bcrypt");
@@ -29,7 +30,7 @@ app.use(cors({
   credentials: true
  }));
 
-// app.use(cookieParser());
+app.use(cookieParser());
 
 const hour = 3600000;
 

@@ -1,7 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const { getParks, updateParks } = require("../park");
-router.route("/park").get(getParks);
-router.route("/park").post(updateParks);
+const isAuthenticated = require("../middleware/isAuthenticated");
+
+router.route("/park").get(isAuthenticated, getParks);
+router.route("/park").post(isAuthenticated, updateParks);
 
 module.exports = router;
