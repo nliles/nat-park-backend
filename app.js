@@ -21,7 +21,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(cors({ credentials: true }));
+const allowedOrigins = ['http://localhost:3000', 'https://www.natparkchecklist.com/'];
+
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+  credentials: true
+ }));
 
 // app.use(cookieParser());
 
@@ -30,9 +36,13 @@ const hour = 3600000;
 app.use(session({
   secret: process.env.SESSION_SECRET_KEY, // name of cookie stored on client side
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
-  cookie: { maxAge: hour }
+  cookie: {
+    secure: false,
+    httpOnly: true,
+    maxAge: hour * 3
+  }
 }))
 
 app.use("/auth", authRoutes);

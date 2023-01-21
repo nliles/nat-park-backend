@@ -2,9 +2,7 @@ const jwt = require("jsonwebtoken");
 const express = require("express");
 const router = express.Router();
 const { getParks, updateParks } = require("../park");
-const checkAuth = require("../middleware/checkAuth");
-
-router.route("/park").get(checkAuth, getParks);
-router.route("/park").post(checkAuth, updateParks);
+router.route("/park").get(getParks);
+router.route("/park").post(updateParks);
 
 module.exports = router;
