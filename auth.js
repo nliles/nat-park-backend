@@ -6,10 +6,6 @@ const userExistsErrorMsg = "The email address provided may be registered already
 const invalidErrorMsg = "You have entered an invalid username or password.";
 const generalErrorMsg = "Something went wrong. Please try again later.";
 
-function generateToken(user) {
-  return jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: "60m" });
-}
-
 // auth.js
 exports.register = async (req, res, next) => {
   const { email, password } = req.body;

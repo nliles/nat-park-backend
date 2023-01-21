@@ -1,6 +1,5 @@
 const User = require("./db/model/userModel");
 const Park = require("./db/model/parkModel");
-const jwt = require("jsonwebtoken");
 
 // park.js
 exports.getParks = async (req, res, next) => {
