@@ -27,14 +27,13 @@ const allowedOrigins = [
   "https://www.natparkchecklist.com/",
 ];
 
-app.use(cors({ credentials: true }));
-
-// app.use(
-//   cors({
-//     origin: "*",
-//     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
-//   })
-// );
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 
@@ -42,14 +41,13 @@ const hour = 3600000;
 
 app.use(
   session({
-    proxy: true,
     secret: process.env.SESSION_SECRET_KEY, // name of cookie stored on client side
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     cookie: {
-      // secure: true,
-      // httpOnly: true,
+      secure: true,
+      httpOnly: true,
       maxAge: hour * 3
     },
   })
