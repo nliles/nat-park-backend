@@ -18,12 +18,7 @@ exports.updateParks = async (req, res, next) => {
   const user = await User.findOne({ id: req.session.user });
   const park = await Park.findOne({ user });
   const query = { user };
-  const update = {
-    parks: {
-      ...(park ? park.parks : {}),
-      [designation]: parks,
-    },
-  };
+  const update = { $set: { [designation]: parks } };
   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
   let parkData;
   try {
