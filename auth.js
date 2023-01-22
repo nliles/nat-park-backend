@@ -1,15 +1,12 @@
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
+const { randomUUID } = require('crypto');
 
 const passwordErrorMsg = "Password must have at least 8 characters.";
-const userExistsErrorMsg = "The email address provided may be registered already.";
+const userExistsErrorMsg =
+  "The email address provided may be registered already.";
 const invalidErrorMsg = "You have entered an invalid username or password.";
 const generalErrorMsg = "Something went wrong. Please try again later.";
-
-function generateToken(user) {
-  return jwt.sign({ user }, process.env.SECRET_KEY, { expiresIn: "60m" });
-}
 
 // auth.js
 exports.register = async (req, res, next) => {
@@ -26,14 +23,16 @@ exports.register = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   // Set user password to hashed password
   const hash = await bcrypt.hash(password, salt);
-  const token = generateToken(email);
+  const userId = randomUUID();
   try {
     const user = await User.create({
+      id: userId,
       email,
       password: hash,
     });
     return res.status(200).json({
       user: {
+        id: userId,
         email,
         token: `Bearer ${token}`,
       },
@@ -55,11 +54,12 @@ exports.login = async (req, res, next) => {
     } else {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
-        const token = generateToken(email);
+        req.session.user = email;
+        req.session.admin = true;
         res.status(200).json({
           user: {
+            id: user.id,
             email,
-            token: `Bearer ${token}`,
           },
         });
       } else {
@@ -69,4 +69,9 @@ exports.login = async (req, res, next) => {
   } catch (err) {
     return res.status(500).json({ message: generalErrorMsg });
   }
+};
+
+exports.logout = async (req, res, next) => {
+  req.session.destroy();
+  return res.send("logout success!");
 };

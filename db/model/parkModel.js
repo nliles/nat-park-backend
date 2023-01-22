@@ -24,8 +24,8 @@ const ParkSchema = new mongoose.Schema({
     nationalSeashore: [String],
     nationalWildAndScenicRiver: [String],
     internationalHistoricSite: [String],
-    otherDesignation: [String]
-  }
+    otherDesignation: [String],
+  },
 });
 
 // export ParkSchema
