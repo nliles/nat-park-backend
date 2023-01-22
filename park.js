@@ -5,7 +5,7 @@ const errorMsg = "Something went wrong"
 
 exports.getParks = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.session.user });
+    const user = await User.findOne({ id: req.session.user });
     const park = await Park.findOne({ user });
     return res.status(200).json({ parks: park ? park.parks : {} });
   } catch (e) {
@@ -15,7 +15,7 @@ exports.getParks = async (req, res, next) => {
 
 exports.updateParks = async (req, res, next) => {
   const { designation, parks } = req.body;
-  const user = await User.findOne({ email: req.session.user });
+  const user = await User.findOne({ id: req.session.user });
   const park = await Park.findOne({ user });
   const query = { user };
   const update = {
