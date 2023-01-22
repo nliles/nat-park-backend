@@ -54,7 +54,7 @@ exports.login = async (req, res, next) => {
     } else {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
-        req.session.user = userId;
+        req.session.user = user.id;
         res.status(200).json({
           user: {
             id: user.id,
