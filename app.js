@@ -41,7 +41,7 @@ const hour = 3600000;
 
 app.use(
   session({
-    secret: process.env.SESSION_SECRET_KEY, // name of cookie stored on client side
+    secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
