@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
+app.enable('trust proxy')
+
 const allowedOrigins = [
   "http://localhost:3000",
   "https://www.natparkchecklist.com",
