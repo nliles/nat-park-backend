@@ -48,7 +48,7 @@ app.use(
     cookie: {
       secure: false,
       httpOnly: true,
-      maxAge: hour * 3,
+      maxAge: hour * 3
     },
   })
 );

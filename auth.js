@@ -73,5 +73,8 @@ exports.login = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
   req.session.destroy();
+  res.clearCookie('connect.sid', {
+    path: '/'
+  });
   return res.send("logout success!");
 };
