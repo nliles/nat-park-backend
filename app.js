@@ -29,8 +29,8 @@ const allowedOrigins = [
 
 app.use(
   cors({
-    origin: allowedOrigins,
-    methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
+    // origin: allowedOrigins,
+    // methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
   })
 );
@@ -46,8 +46,8 @@ app.use(
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     cookie: {
-      // secure: true,
-      // httpOnly: true,
+      secure: true,
+      httpOnly: true,
       maxAge: hour * 3
     },
   })
