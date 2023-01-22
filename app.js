@@ -24,12 +24,13 @@ app.use(bodyParser.json());
 
 const allowedOrigins = [
   "http://localhost:3000",
+  "https://www.natparkchecklist.com",
   "https://www.natparkchecklist.com/",
 ];
 
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: "https://www.natparkchecklist.com/",
     methods: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
   })
