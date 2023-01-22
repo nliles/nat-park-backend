@@ -3,7 +3,6 @@ const Park = require("./db/model/parkModel");
 
 const errorMsg = "Something went wrong"
 
-// park.js
 exports.getParks = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.session.user });
