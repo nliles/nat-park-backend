@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 // user schema
 const UserSchema = new mongoose.Schema({
+  id: String,
   // email field
   email: {
     type: String,

@@ -44,12 +44,12 @@ app.use(
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    proxy: true,
+    // proxy: true,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     cookie: {
-      secure: true,
-      httpOnly: true,
-      sameSite: 'none',
+      secure: false,
+      // httpOnly: false,
+      // sameSite: 'none',
       maxAge: hour * 3
     },
   })
