@@ -1,6 +1,8 @@
 const User = require("./db/model/userModel");
 const Park = require("./db/model/parkModel");
 
+const errorMsg = "Something went wrong"
+
 // park.js
 exports.getParks = async (req, res, next) => {
   try {
@@ -8,7 +10,7 @@ exports.getParks = async (req, res, next) => {
     const park = await Park.findOne({ user });
     return res.status(200).json({ parks: park ? park.parks : {} });
   } catch (e) {
-    return res.status(500).json({ message: "Something went wrong" });
+    return res.status(500).json({ message: errorMsg });
   }
 };
 
@@ -29,6 +31,6 @@ exports.updateParks = async (req, res, next) => {
     parkData = await Park.findOneAndUpdate(query, update, options);
     return res.status(200).json({ parks: parkData.parks });
   } catch (e) {
-    return res.status(500).json({ message: "Sorry, something went wrong." });
+    return res.status(500).json({ message: errorMsg });
   }
 };
