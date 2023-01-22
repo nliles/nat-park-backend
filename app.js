@@ -35,7 +35,7 @@ app.use(
   })
 );
 
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 
 const hour = 3600000;
 
