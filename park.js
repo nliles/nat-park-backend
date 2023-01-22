@@ -29,6 +29,6 @@ exports.updateParks = async (req, res, next) => {
     parkData = await Park.findOneAndUpdate(query, update, options);
     return res.status(200).json({ parks: parkData.parks });
   } catch (e) {
-    return res.status(400).json({ message: "Fail" });
+    return res.status(500).json({ message: "Sorry, something went wrong." });
   }
 };

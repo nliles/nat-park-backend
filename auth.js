@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
+const { randomUUID } = require('crypto');
 
 const passwordErrorMsg = "Password must have at least 8 characters.";
 const userExistsErrorMsg =
@@ -22,13 +23,16 @@ exports.register = async (req, res, next) => {
   const salt = await bcrypt.genSalt(10);
   // Set user password to hashed password
   const hash = await bcrypt.hash(password, salt);
+  const userId = randomUUID();
   try {
     const user = await User.create({
+      id: userId,
       email,
       password: hash,
     });
     return res.status(200).json({
       user: {
+        id: userId,
         email,
         token: `Bearer ${token}`,
       },
@@ -54,6 +58,7 @@ exports.login = async (req, res, next) => {
         req.session.admin = true;
         res.status(200).json({
           user: {
+            id: user.id,
             email,
           },
         });
