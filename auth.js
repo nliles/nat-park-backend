@@ -30,15 +30,15 @@ exports.register = async (req, res, next) => {
       email,
       password: hash,
     });
+    req.session.user = userId;
     return res.status(200).json({
       user: {
         id: userId,
         email,
-        token: `Bearer ${token}`,
       },
     });
   } catch (err) {
-    return res.status(401).json({
+    return res.status(400).json({
       message: "User not successful created",
       error: err.mesage,
     });
@@ -54,8 +54,7 @@ exports.login = async (req, res, next) => {
     } else {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
-        req.session.user = email;
-        req.session.admin = true;
+        req.session.user = userId;
         res.status(200).json({
           user: {
             id: user.id,
@@ -63,7 +62,7 @@ exports.login = async (req, res, next) => {
           },
         });
       } else {
-        return res.status(401).json({ message: invalidErrorMsg });
+        return res.status(400).json({ message: invalidErrorMsg });
       }
     }
   } catch (err) {
