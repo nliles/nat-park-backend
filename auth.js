@@ -50,7 +50,7 @@ exports.login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: invalidErrorMsg });
+      return res.status(400).json({ message: invalidErrorMsg });
     } else {
       const validPassword = await bcrypt.compare(password, user.password);
       if (validPassword) {
