@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
-const { randomUUID } = require('crypto');
+const { randomUUID } = require("crypto");
 
 const passwordErrorMsg = "Password must have at least 8 characters.";
 const userExistsErrorMsg =
@@ -72,8 +72,8 @@ exports.login = async (req, res, next) => {
 
 exports.logout = async (req, res, next) => {
   req.session.destroy();
-  res.clearCookie('connect.sid', {
-    path: '/'
+  res.clearCookie("connect.sid", {
+    path: "/",
   });
   return res.send("logout success!");
 };
