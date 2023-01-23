@@ -13,7 +13,9 @@ const authRoutes = require("./routes/authRoutes");
 const parkRoutes = require("./routes/parkRoutes");
 const bodyParser = require("body-parser");
 
-//Connecting the Database
+const HOUR = 3600000;
+const PROD_ENV = process.env.NODE_ENV === "production";
+
 connectDB();
 
 // parse application/x-www-form-urlencoded
@@ -37,20 +39,20 @@ app.use(
 
 app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 
-const hour = 3600000;
-
 app.use(
   session({
     secret: process.env.SESSION_SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    proxy: true,
+    proxy: PROD_ENV ? true : undefined,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
     cookie: {
-      secure: true,
-      httpOnly: true,
-      sameSite: "none",
-      maxAge: hour * 3,
+      ...(PROD_ENV && {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'none'
+      }),
+      maxAge: HOUR * 3
     },
   })
 );
