@@ -50,7 +50,7 @@ app.use(
       ...(PROD_ENV && {
         secure: true,
         httpOnly: true,
-        // sameSite: 'none'
+        sameSite: 'none'
       }),
       maxAge: HOUR * 3
     },
