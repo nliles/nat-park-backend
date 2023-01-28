@@ -12,15 +12,9 @@ const User = require("./db/model/userModel");
 const authRoutes = require("./routes/authRoutes");
 const parkRoutes = require("./routes/parkRoutes");
 const bodyParser = require("body-parser");
-const { AwakeHeroku } = require("awake-heroku");
 
 const HOUR = 3600000;
 const PROD_ENV = process.env.NODE_ENV === "production";
-
-AwakeHeroku.add("https://your-app-nam-1.herokuapp.com");
-
-// Start service
-AwakeHeroku.start();
 
 connectDB();
 
