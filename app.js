@@ -48,7 +48,7 @@ app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 app.use(
   session({
     secret: process.env.SESSION_SECRET_KEY,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     proxy: PROD_ENV ? true : undefined,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
