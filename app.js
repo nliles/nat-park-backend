@@ -12,9 +12,15 @@ const User = require("./db/model/userModel");
 const authRoutes = require("./routes/authRoutes");
 const parkRoutes = require("./routes/parkRoutes");
 const bodyParser = require("body-parser");
+const { AwakeHeroku } = require("awake-heroku");
 
 const HOUR = 3600000;
 const PROD_ENV = process.env.NODE_ENV === "production";
+
+AwakeHeroku.add("https://your-app-nam-1.herokuapp.com");
+
+// Start service
+AwakeHeroku.start();
 
 connectDB();
 
@@ -42,7 +48,7 @@ app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 app.use(
   session({
     secret: process.env.SESSION_SECRET_KEY,
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     proxy: PROD_ENV ? true : undefined,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
