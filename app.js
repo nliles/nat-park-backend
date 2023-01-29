@@ -39,6 +39,8 @@ app.use(
 
 app.use(cookieParser(process.env.SESSION_SECRET_KEY));
 
+app.set("trust proxy", true);
+
 app.use(
   session({
     secret: process.env.SESSION_SECRET_KEY,
