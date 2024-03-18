@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("./db/model/userModel");
+const Park = require("./db/model/parkModel");
 const { randomUUID } = require("crypto");
 
 const passwordErrorMsg = "Password must have at least 8 characters.";
@@ -29,6 +30,9 @@ exports.register = async (req, res, next) => {
       id: userId,
       email,
       password: hash,
+    });
+    await Park.create({
+      user,
     });
     req.session.user = userId;
     return res.status(200).json({
