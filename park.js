@@ -26,16 +26,3 @@ exports.updateParkDesignation = async (req, res, next) => {
     return res.status(500).json({ message: errorMsg });
   }
 };
-
-// exports.updateParks = async (req, res, next) => {
-//   const { parks } = req.body;
-//   const user = await User.findOne({ id: req.session.user });
-//   const query = { user };
-//   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
-//   try {
-//     const parkData = await Park.replaceOne(query, parks, options);
-//     return res.status(200).json({ parks: parkData });
-//   } catch (e) {
-//     return res.status(500).json({ message: errorMsg });
-//   }
-// };
