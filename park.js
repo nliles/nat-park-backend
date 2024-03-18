@@ -13,21 +13,7 @@ exports.getParks = async (req, res, next) => {
   }
 };
 
-exports.createParks = async (req, res, next) => {
-  const { designation, parks } = req.body;
-  const user = await User.findOne({ id: req.session.user });
-  try {
-    const parkData = await Park.create({
-      user,
-      parks: { [designation]: parks },
-    });
-    return res.status(200).json({ parks: parkData.parks });
-  } catch (e) {
-    return res.status(500).json({ message: errorMsg });
-  }
-};
-
-exports.updateParks = async (req, res, next) => {
+exports.updateParkDesignation = async (req, res, next) => {
   const { designation, parks } = req.body;
   const user = await User.findOne({ id: req.session.user });
   const query = { user };
@@ -40,3 +26,16 @@ exports.updateParks = async (req, res, next) => {
     return res.status(500).json({ message: errorMsg });
   }
 };
+
+// exports.updateParks = async (req, res, next) => {
+//   const { parks } = req.body;
+//   const user = await User.findOne({ id: req.session.user });
+//   const query = { user };
+//   const options = { upsert: true, new: true, setDefaultsOnInsert: true };
+//   try {
+//     const parkData = await Park.replaceOne(query, parks, options);
+//     return res.status(200).json({ parks: parkData });
+//   } catch (e) {
+//     return res.status(500).json({ message: errorMsg });
+//   }
+// };
