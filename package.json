@@ -20,6 +20,7 @@
   "homepage": "https://github.com/nliles/nat-park-backend#readme",
   "dependencies": {
     "auth": "^1.0.2",
+    "axios": "^1.6.8",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "connect-mongo": "5.1.0",
