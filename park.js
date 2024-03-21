@@ -26,3 +26,18 @@ exports.updateParkDesignation = async (req, res, next) => {
     return res.status(500).json({ message: errorMsg });
   }
 };
+
+exports.updatePark = async (req, res, next) => {
+  const { parks } = req.body;
+  const user = await User.findOne({ id: req.session.user });
+  const query = { user };
+  const update = { user, parks };
+  const options = { returnDocument: 'after' };
+  try {
+    const parkData = await Park.findOneAndReplace(query, update, options);
+    return res.status(200).json({ parks: parkData.parks });
+  } catch (e) {
+    console.log('error', e)
+    return res.status(500).json({ message: errorMsg });
+  }
+};
