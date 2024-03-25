@@ -10,7 +10,7 @@ const ParkSchema = new mongoose.Schema({
     nationalBattlefieldPark: [String],
     nationalBattlefieldSite: [String],
     nationalMilitaryPark: [String],
-    nationalHistoricPark: [String],
+    nationalHistoricalPark: [String],
     nationalHistoricSite: [String],
     nationalLakeshore: [String],
     nationalMemorial: [String],
