@@ -11,12 +11,12 @@ const formatParkDesignation = (park) => {
   }
   const found = designations.find((parkKey) => {
     if (PARK_INFO[parkKey].codes.includes(park.parkCode)) {
-      return startCase(parkKey);
+      return parkKey;
     } else {
       return undefined;
     }
   });
-  return found || "Other Designation";
+  return found ? startCase(found) : "Other Designation";
 };
 
 module.exports = {
