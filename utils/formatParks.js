@@ -1,4 +1,4 @@
-const kebabCase = require('lodash.kebabcase');
+const kebabCase = require("lodash.kebabcase");
 const { FORMATTED_PARKS } = require("../constants/formattedParks");
 const { PARK_OVERRIDES } = require("../constants/parkInfo");
 
@@ -7,7 +7,7 @@ const formatParks = (parks) => {
   parksArr = parksArr
     .map((park) => {
       const found = PARK_OVERRIDES.filter((po) =>
-        po.parkCodes.includes(park.parkCode)
+        po.parkCodes.includes(park.parkCode),
       );
       return found.length
         ? found.map((foundItem) => ({
@@ -25,5 +25,5 @@ const formatParks = (parks) => {
 };
 
 module.exports = {
-    formatParks,
-  };
+  formatParks,
+};
