@@ -1,7 +1,5 @@
 const kebabCase = require("lodash.kebabcase");
-const { FORMATTED_PARKS } = require("../constants/formattedParks");
-const { PARK_OVERRIDES } = require("../constants/parkInfo");
-
+const { FORMATTED_PARKS, PARK_OVERRIDES } = require("../constants/parkData");
 const formatParks = (parks) => {
   let parksArr = parks.slice();
   parksArr = parksArr
