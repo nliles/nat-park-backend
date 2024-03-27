@@ -10,6 +10,7 @@ const bcrypt = require("bcrypt");
 const router = express.Router();
 const User = require("./db/model/userModel");
 const authRoutes = require("./routes/authRoutes");
+const userParkRoutes = require("./routes/userParkRoutes");
 const parkRoutes = require("./routes/parkRoutes");
 const bodyParser = require("body-parser");
 
@@ -34,7 +35,7 @@ app.use(
     origin: allowedOrigins,
     methods: ["POST", "PATCH", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(cookieParser(process.env.SESSION_SECRET_KEY));
@@ -50,16 +51,18 @@ app.use(
       ...(PROD_ENV && {
         secure: true,
         httpOnly: true,
-        sameSite: 'none'
+        sameSite: "none",
       }),
-      maxAge: HOUR * 3
+      maxAge: HOUR * 3,
     },
-  })
+  }),
 );
 
 app.use("/auth", authRoutes);
 
-app.use("/", parkRoutes);
+app.use("/user", userParkRoutes);
+
+app.use("/park", parkRoutes);
 
 app.get("/", (req, res) => {
   res.send("<h1>Nat Park Checklist Server</h1>");
