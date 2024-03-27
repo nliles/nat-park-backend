@@ -1,5 +1,7 @@
 const kebabCase = require("lodash.kebabcase");
 const { FORMATTED_PARKS, PARK_OVERRIDES } = require("../constants/parkData");
+const { formatParkDesignation } = require("./formatParkDesignation");
+
 const formatParks = (parks) => {
   let parksArr = parks.slice();
   parksArr = parksArr
@@ -18,7 +20,11 @@ const formatParks = (parks) => {
           }))
         : [park];
     })
-    .reduce((acc, val) => acc.concat(val), []);
+    .reduce((acc, val) => acc.concat(val), [])
+    .map((park) => ({
+      ...park,
+      designation: formatParkDesignation(park),
+    }));
   return [...parksArr, ...FORMATTED_PARKS];
 };
 
