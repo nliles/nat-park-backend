@@ -34,7 +34,7 @@ app.use(
     origin: allowedOrigins,
     methods: ["POST", "PATCH", "PUT", "GET", "OPTIONS", "HEAD"],
     credentials: true,
-  })
+  }),
 );
 
 app.use(cookieParser(process.env.SESSION_SECRET_KEY));
@@ -50,11 +50,11 @@ app.use(
       ...(PROD_ENV && {
         secure: true,
         httpOnly: true,
-        sameSite: 'none'
+        sameSite: "none",
       }),
-      maxAge: HOUR * 3
+      maxAge: HOUR * 3,
     },
-  })
+  }),
 );
 
 app.use("/auth", authRoutes);
