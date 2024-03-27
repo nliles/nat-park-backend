@@ -153,4 +153,5 @@ module.exports = {
   ALL_CODES,
   FORMATTED_PARKS,
   PARK_OVERRIDES,
+  PARK_INFO,
 };
