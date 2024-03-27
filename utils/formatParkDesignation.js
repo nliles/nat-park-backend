@@ -1,5 +1,6 @@
 const kebabCase = require("lodash.kebabcase");
 const camelCase = require("lodash.camelcase");
+const startCase = require("lodash.startcase");
 const { PARK_INFO } = require("../constants/parkData");
 
 const formatParkDesignation = (park) => {
@@ -10,12 +11,12 @@ const formatParkDesignation = (park) => {
   }
   const found = designations.find((parkKey) => {
     if (PARK_INFO[parkKey].codes.includes(park.parkCode)) {
-      return parkKey;
+      return startCase(parkKey);
     } else {
       return undefined;
     }
   });
-  return found || "otherDesignation";
+  return found || "Other Designation";
 };
 
 module.exports = {
