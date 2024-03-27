@@ -123,7 +123,7 @@ const HOHOKAM_NAT_MONUMENT = {
   url: "https://www.nationalparks.org/explore/parks/hohokam-pima-national-monument",
 };
 
-const FORMATTED_PARKS = [
+module.exports = {
   SEQUOIA_NAT_PARK,
   KINGS_CANYON_NAT_PARK,
   JDR_MEMORIAL_PARKWAY,
@@ -131,8 +131,4 @@ const FORMATTED_PARKS = [
   LAKE_CHELAN_NRA,
   FORT_CAROLINE_NAT_MEMORIAL,
   HOHOKAM_NAT_MONUMENT,
-];
-
-module.exports = {
-  FORMATTED_PARKS,
 };

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { NPS_URL } = require("./constants/api");
-const { ALL_CODES } = require("./constants/parks");
+const { ALL_CODES } = require("./constants/parkData");
 const { formatParks } = require("./utils/formatParks");
 const { sortParks } = require("./utils/sortParks");
 
