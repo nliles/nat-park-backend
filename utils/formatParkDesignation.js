@@ -7,7 +7,7 @@ const formatParkDesignation = (park) => {
   const designations = Object.keys(PARK_INFO);
   const formattedDesignation = camelCase(park.designation);
   if (designations.includes(formattedDesignation)) {
-    park.designation;
+    return park.designation;
   }
   const found = designations.find((parkKey) => {
     if (PARK_INFO[parkKey].codes.includes(park.parkCode)) {
