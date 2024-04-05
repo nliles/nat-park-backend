@@ -16,6 +16,11 @@ primary_region = 'ewr'
   min_machines_running = 1
   processes = ['app']
 
+[env]
+  PORT = "5000"
+  FRONTEND_ORIGIN_URL="https://nationalparkchecklist.com/"
+  BACKEND_ORIGIN_URL="http://localhost:5000"
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
