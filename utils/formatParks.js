@@ -24,7 +24,18 @@ const formatParks = (parks) => {
     .map((park) => ({
       ...park,
       designation: formatParkDesignation(park),
-    }));
+    }))
+    .map((park) => {
+      // Latitude/Longitude returned from NPS API is slightly off
+      if (park.name === 'National Park of American Samoa') {
+        return {
+          ...park,
+          latitude: "-14.2579",
+          longitude: "-170.6860"
+        }
+      }
+      return park
+    })
   return [...parksArr, ...FORMATTED_PARKS];
 };
 
