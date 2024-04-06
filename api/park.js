@@ -1,5 +1,5 @@
-const User = require("./db/model/userModel");
-const Park = require("./db/model/parkModel");
+const User = require("../db/model/userModel");
+const Park = require("../db/model/parkModel");
 
 const errorMsg = "Something went wrong";
 
