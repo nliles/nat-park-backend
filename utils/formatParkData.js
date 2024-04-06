@@ -1,6 +1,6 @@
 const camelCase = require("lodash.camelcase");
 
-const formattedParks = (parks) =>
+const formatParkData = (parks) =>
   parks.reduce((acc, curr) => {
     const formattedDesignation = camelCase(curr.designation);
     if (acc[formattedDesignation]) {
@@ -12,5 +12,5 @@ const formattedParks = (parks) =>
   }, {});
 
 module.exports = {
-  formattedParks,
+    formatParkData,
 };
