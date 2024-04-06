@@ -1,6 +1,9 @@
 const kebabCase = require("lodash.kebabcase");
 const { FORMATTED_PARKS, PARK_OVERRIDES } = require("../constants/parkData");
+const { AMERICAN_SAMOA_LAT_LONG } = require("../constants/formattedParks");
 const { formatParkDesignation } = require("./formatParkDesignation");
+
+const AMERICAN_SAMOA = 'National Park of American Samoa'
 
 const formatParks = (parks) => {
   let parksArr = parks.slice();
@@ -24,18 +27,11 @@ const formatParks = (parks) => {
     .map((park) => ({
       ...park,
       designation: formatParkDesignation(park),
+       // Latitude/Longitude returned from NPS API is slightly off for American Samoa Nat Park.
+      latitude: park.name === AMERICAN_SAMOA ? AMERICAN_SAMOA_LAT_LONG[0] : park.latitude,
+      longitude: park.name === AMERICAN_SAMOA ? AMERICAN_SAMOA_LAT_LONG[1] : park.longitude,
+      latLong: park.name === AMERICAN_SAMOA ? `lat:${AMERICAN_SAMOA_LAT_LONG[0]}, long:${AMERICAN_SAMOA_LAT_LONG[1]}` : park.latLong,
     }))
-    .map((park) => {
-      // Latitude/Longitude returned from NPS API is slightly off
-      if (park.name === 'National Park of American Samoa') {
-        return {
-          ...park,
-          latitude: "-14.2579",
-          longitude: "-170.6860"
-        }
-      }
-      return park
-    })
   return [...parksArr, ...FORMATTED_PARKS];
 };
 
