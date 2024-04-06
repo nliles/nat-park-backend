@@ -1,10 +1,10 @@
 const axios = require("axios");
 const camelCase = require("lodash.camelcase");
-const { NPS_URL } = require("./constants/api");
-const { ALL_CODES } = require("./constants/parkData");
-const { formatParks } = require("./utils/formatParks");
-const { sortParks } = require("./utils/sortParks");
-const { formatParkData } = require("./utils/formatParkData");
+const { NPS_URL } = require("../constants/api");
+const { ALL_CODES } = require("../constants/parkData");
+const { formatParks } = require("../utils/formatParks");
+const { sortParks } = require("../utils/sortParks");
+const { formatParkData } = require("../utils/formatParkData");
 
 exports.getNPSParks = async (req, res, next) => {
   const API_KEY = process.env.NPS_API_KEY;

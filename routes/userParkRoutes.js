@@ -4,7 +4,7 @@ const {
   getSelectedParks,
   updateParkDesignation,
   updateSelectedParks,
-} = require("../park");
+} = require("../api/park");
 const isAuthenticated = require("../middleware/isAuthenticated");
 
 router.route("/park").get(isAuthenticated, getSelectedParks);
