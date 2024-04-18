@@ -1,4 +1,13 @@
 const {
+  ANIAKCHAK_CODE,
+  CRATER_OF_THE_MOON,
+  DENALI_CODE,
+  GATES_OF_THE_ARCTIC_CODE,
+  GLACIER_BAY_CODE,
+  GREAT_SAND_DUNES_CODE,
+  KATMAI_CODE,
+  LAKE_CLARK_CODE,
+  WRANGLER_ELIAS_CODE,
   NAT_BATTLEFIELD_CODES,
   NAT_BATTLEFIELD_PARK_CODES,
   NAT_BATTLEFIELD_SITE_CODES,
@@ -37,15 +46,15 @@ const PARK_INFO = {
     parkOverrides: [
       {
         parkCodes: [
-          "dena",
-          "gaar",
+          DENALI_CODE,
+          GATES_OF_THE_ARCTIC_CODE,
           "glac",
-          "glba",
-          "grsa",
-          "katm",
-          "lacl",
+          GLACIER_BAY_CODE,
+          GREAT_SAND_DUNES_CODE,
+          KATMAI_CODE,
+          LAKE_CLARK_CODE,
           "redw",
-          "wrst",
+          WRANGLER_ELIAS_CODE,
         ],
         designation: "National Park",
       },
@@ -83,7 +92,10 @@ const PARK_INFO = {
     codes: NAT_MONUMENT_CODES,
     formattedParks: [HOHOKAM_NAT_MONUMENT],
     parkOverrides: [
-      { parkCodes: ["ania", "crmo"], designation: "National Monument" },
+      {
+        parkCodes: [ANIAKCHAK_CODE, CRATER_OF_THE_MOON],
+        designation: "National Monument",
+      },
     ],
   },
   nationalRecreationArea: {
@@ -111,15 +123,15 @@ const PARK_INFO = {
     parkOverrides: [
       {
         parkCodes: [
-          "ania",
-          "crmo",
-          "dena",
-          "gaar",
-          "glba",
-          "grsa",
-          "katm",
-          "lacl",
-          "wrst",
+          ANIAKCHAK_CODE,
+          CRATER_OF_THE_MOON,
+          DENALI_CODE,
+          GATES_OF_THE_ARCTIC_CODE,
+          GLACIER_BAY_CODE,
+          GREAT_SAND_DUNES_CODE,
+          KATMAI_CODE,
+          LAKE_CLARK_CODE,
+          WRANGLER_ELIAS_CODE,
         ],
         designation: "National Preserve",
         needsId: true,
