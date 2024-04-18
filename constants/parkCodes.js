@@ -1,4 +1,16 @@
 // https://www.nps.gov/aboutus/national-park-system.htm
+
+const AMERICAN_SAMOA_CODE = "npsa";
+const ANIAKCHAK_CODE = "ania";
+const CRATER_OF_THE_MOON = "crmo";
+const DENALI_CODE = "dena";
+const GATES_OF_THE_ARCTIC_CODE = "gaar";
+const GLACIER_BAY_CODE = "glba";
+const GREAT_SAND_DUNES_CODE = "grsa";
+const KATMAI_CODE = "katm";
+const LAKE_CLARK_CODE = "lacl";
+const WRANGLER_ELIAS_CODE = "wrst";
+
 const NAT_BATTLEFIELD_CODES = [
   "anti",
   "biho",
@@ -44,18 +56,18 @@ const NAT_PARK_CODES = [
   "cong",
   "crla",
   "cuva",
-  "dena",
+  DENALI_CODE,
   "deva",
   "drto",
   "ever",
   "jeff",
-  "gaar",
+  GATES_OF_THE_ARCTIC_CODE,
   "glac",
-  "glba",
+  GLACIER_BAY_CODE,
   "grca",
   "grte",
   "grba",
-  "grsa",
+  GREAT_SAND_DUNES_CODE,
   "grsm",
   "gumo",
   "hale",
@@ -64,15 +76,15 @@ const NAT_PARK_CODES = [
   "indu",
   "isro",
   "jotr",
-  "katm",
+  KATMAI_CODE,
   "kefj",
   "kova",
-  "lacl",
+  LAKE_CLARK_CODE,
   "lavo",
   "maca",
   "meve",
   "mora",
-  "npsa",
+  AMERICAN_SAMOA_CODE,
   "neri",
   "noca",
   "olym",
@@ -87,7 +99,7 @@ const NAT_PARK_CODES = [
   "voya",
   "whsa",
   "wica",
-  "wrst",
+  WRANGLER_ELIAS_CODE,
   "yell",
   "yose",
   "zion",
@@ -274,7 +286,7 @@ const NAT_MONUMENT_CODES = [
   "afbg",
   "agfo",
   "alfl",
-  "ania",
+  ANIAKCHAK_CODE,
   "azru",
   "band",
   "bepa",
@@ -295,7 +307,7 @@ const NAT_MONUMENT_CODES = [
   "chir",
   "colm",
   "cech",
-  "crmo",
+  CRATER_OF_THE_MOON,
   "depo",
   "deto",
   "dino",
@@ -399,24 +411,24 @@ const NAT_RESERVES_CODES = ["ciro", "ebla"];
 const NAT_PARKWAY_CODES = ["blri", "gwmp", "natr"];
 
 const NAT_PRESERVES_CODES = [
-  "ania",
+  ANIAKCHAK_CODE,
   "bela",
   "bicy",
   "bith",
-  "crmo",
-  "dena",
-  "gaar",
+  CRATER_OF_THE_MOON,
+  DENALI_CODE,
+  GATES_OF_THE_ARCTIC_CODE,
   "glac",
-  "grsa",
-  "katm",
-  "lacl",
+  GREAT_SAND_DUNES_CODE,
+  KATMAI_CODE,
+  LAKE_CLARK_CODE,
   "liri",
   "moja",
   "noat",
   "tapr",
   "timu",
   "vall",
-  "wrst",
+  WRANGLER_ELIAS_CODE,
   "yuch",
 ];
 
@@ -450,6 +462,16 @@ const OTHER_DESIGNATION_CODES = [
 const INTERNATIONAL_HISTORIC_SITE = ["sacr"];
 
 module.exports = {
+  AMERICAN_SAMOA_CODE,
+  ANIAKCHAK_CODE,
+  CRATER_OF_THE_MOON,
+  DENALI_CODE,
+  GATES_OF_THE_ARCTIC_CODE,
+  GLACIER_BAY_CODE,
+  GREAT_SAND_DUNES_CODE,
+  KATMAI_CODE,
+  LAKE_CLARK_CODE,
+  WRANGLER_ELIAS_CODE,
   NAT_BATTLEFIELD_CODES,
   NAT_BATTLEFIELD_PARK_CODES,
   NAT_BATTLEFIELD_SITE_CODES,

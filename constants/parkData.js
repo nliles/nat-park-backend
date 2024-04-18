@@ -19,7 +19,7 @@ const {
   NAT_WILD_SCENIC_RIVER_CODES,
   OTHER_DESIGNATION_CODES,
   INTERNATIONAL_HISTORIC_SITE,
-} = require("./parks");
+} = require("./parkCodes");
 const {
   FORT_CAROLINE_NAT_MEMORIAL,
   KINGS_CANYON_NAT_PARK,
