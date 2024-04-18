@@ -12,5 +12,5 @@ const formatParkData = (parks) =>
   }, {});
 
 module.exports = {
-    formatParkData,
+  formatParkData,
 };

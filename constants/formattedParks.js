@@ -123,8 +123,6 @@ const HOHOKAM_NAT_MONUMENT = {
   url: "https://www.nationalparks.org/explore/parks/hohokam-pima-national-monument",
 };
 
-const AMERICAN_SAMOA_LAT_LONG = ["-14.2579","-170.6860"]
-
 module.exports = {
   SEQUOIA_NAT_PARK,
   KINGS_CANYON_NAT_PARK,
@@ -133,6 +131,4 @@ module.exports = {
   LAKE_CHELAN_NRA,
   FORT_CAROLINE_NAT_MEMORIAL,
   HOHOKAM_NAT_MONUMENT,
-  AMERICAN_SAMOA_LAT_LONG
 };
-
